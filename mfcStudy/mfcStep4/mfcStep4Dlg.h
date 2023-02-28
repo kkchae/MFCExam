@@ -1,6 +1,7 @@
 
 // mfcStep4Dlg.h : 헤더 파일
 //
+#include "DlgImage.h"
 
 #pragma once
 
@@ -15,7 +16,7 @@ public:
 // 대화 상자 데이터입니다.
 	enum { IDD = IDD_MFCSTEP4_DIALOG };
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 지원입니다.
 
 
@@ -29,4 +30,11 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnDestroy();
+	void SendMsg(CString strMsg);
+
+private:
+	CDlgImage* m_pDlgImage;
 };

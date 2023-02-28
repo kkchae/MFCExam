@@ -63,6 +63,8 @@ BEGIN_MESSAGE_MAP(CmfcStep4Dlg, CDialog)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDOK, &CmfcStep4Dlg::OnBnClickedOk)
+	ON_WM_DESTROY()
 END_MESSAGE_MAP()
 
 
@@ -98,6 +100,9 @@ BOOL CmfcStep4Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	m_pDlgImage = new CDlgImage(this);
+	m_pDlgImage->Create(IDD_DLG_IMAGE, NULL);
+	m_pDlgImage->ShowWindow(SW_SHOW);
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -151,3 +156,29 @@ HCURSOR CmfcStep4Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+void CmfcStep4Dlg::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	
+	//CDlgImage dlgImage;
+	//dlgImage.DoModal();
+
+	m_pDlgImage->ShowWindow(SW_SHOW);
+
+	//OnOK();
+}
+
+void CmfcStep4Dlg::OnDestroy()
+{
+	CDialog::OnDestroy();
+
+	if (m_pDlgImage) {
+		delete m_pDlgImage;
+	}
+}
+
+void CmfcStep4Dlg::SendMsg(CString strMsg)
+{
+	AfxMessageBox(strMsg);
+}
