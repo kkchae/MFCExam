@@ -1,6 +1,9 @@
 #pragma once
 
-#define COORD_DATA_SIZE 100
+#define MAX_COORD_DATA_SIZE 100
+#define COLOR_WHITE		RGB(255, 255, 255)
+#define COLOR_BLACK		RGB(0, 0, 0)
+#define COLOR_RED		RGB(255,0,0)
 
 // CDlgImage
 
@@ -33,7 +36,7 @@ public:
 	void InitImage(void);
 	void DrawData(CDC* pDC);
 	int m_nCoordDataSize;
-	CPoint m_ptCoordData[COORD_DATA_SIZE];
+	CPoint m_ptCoordData[MAX_COORD_DATA_SIZE];
 };
 
 

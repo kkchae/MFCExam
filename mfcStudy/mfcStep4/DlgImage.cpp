@@ -105,7 +105,7 @@ void CDlgImage::InitImage( void )
 	int nPitch = m_Image.GetPitch();
 	//cout << _T("nPitch =") <<  nPitch << endl;
 
-	int nColor = 255; // 0~255
+	int nColor = COLOR_WHITE; // 0~255
 	memset(fm, nColor, sizeof(unsigned char)*nWidth*nHeight);
 }
 
@@ -113,7 +113,7 @@ void CDlgImage::DrawData( CDC* pDC )
 {
 	if (pDC) {
 		CPen pen;
-		pen.CreatePen( PS_SOLID, 1, RGB(255,0,0) ); // Red
+		pen.CreatePen( PS_SOLID, 1, COLOR_RED ); // Red
 		CPen* oldPen = pDC->SelectObject( &pen );
 
 		CRect rect;

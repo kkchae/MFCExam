@@ -207,25 +207,24 @@ void CmfcStep4Dlg::OnBnClickedButton1()
 	int nWidth = m_pDlgImage->m_Image.GetWidth();
 	int nHeight = m_pDlgImage->m_Image.GetHeight();
 	int nPitch = m_pDlgImage->m_Image.GetPitch();
-
 	int x, y = 0;
 
-	for(int k = 0; k < COORD_DATA_SIZE; k++) {
+	memset(fm, COLOR_BLACK, 640*480);
+	
+	for(int k = 0; k < MAX_COORD_DATA_SIZE; k++) {
 		x = rand() % nWidth;
 		y = rand() % nHeight;
-		fm[y * nPitch + x] = 0; // °ËÀº»ö
+		fm[y * nPitch + x] = rand() % (255+1);
 
 		m_pDlgImageResult->m_ptCoordData[k].x = x;
 		m_pDlgImageResult->m_ptCoordData[k].y = y;
 		m_pDlgImageResult->m_nCoordDataSize++;
 	}
 
-	//memset(fm, 0, 640*480);
-
 	int nSum = 0;
 	for(int j = 0; j < nHeight; j++ ) {
 		for (int i = 0; i < nWidth; i++ ) {
-			if (fm[j * nPitch + i] == 0)
+			if (fm[j * nPitch + i] > COLOR_BLACK + 100)
 				nSum++;
 		}
 	}
