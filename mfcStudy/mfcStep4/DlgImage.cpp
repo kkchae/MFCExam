@@ -11,13 +11,13 @@
 #define new DEBUG_NEW
 #endif
 
-
 // CDlgImage
 
 IMPLEMENT_DYNAMIC(CDlgImage, CDialogEx)
 
 CDlgImage::CDlgImage(CWnd* pParent /*=NULL*/)
 : CDialogEx(CDlgImage::IDD, pParent)
+, m_nCoordDataSize(0)
 {
 	m_pParentWnd = pParent;
 }
@@ -82,6 +82,8 @@ void CDlgImage::OnPaint()
 	if (m_Image) {
 		m_Image.Draw(dc, 0, 0);
 	}
+
+	DrawData(&dc);
 }
 
 void CDlgImage::InitImage( void )
@@ -105,4 +107,22 @@ void CDlgImage::InitImage( void )
 
 	int nColor = 255; // 0~255
 	memset(fm, nColor, sizeof(unsigned char)*nWidth*nHeight);
+}
+
+void CDlgImage::DrawData( CDC* pDC )
+{
+	if (pDC) {
+		CPen pen;
+		pen.CreatePen( PS_SOLID, 1, RGB(255,0,0) ); // Red
+		CPen* oldPen = pDC->SelectObject( &pen );
+
+		CRect rect;
+		for (int i = 0; i < m_nCoordDataSize; i++) {
+			rect.SetRect(m_ptCoordData[i], m_ptCoordData[i]);
+			rect.InflateRect(5, 5);
+			pDC->Ellipse(rect);
+		}
+
+		pDC->SelectObject( oldPen );
+	}
 }

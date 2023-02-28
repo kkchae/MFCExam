@@ -1,5 +1,6 @@
 #pragma once
 
+#define COORD_DATA_SIZE 100
 
 // CDlgImage
 
@@ -30,6 +31,9 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	void InitImage(void);
+	void DrawData(CDC* pDC);
+	int m_nCoordDataSize;
+	CPoint m_ptCoordData[COORD_DATA_SIZE];
 };
 
 

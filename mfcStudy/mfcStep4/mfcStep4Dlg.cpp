@@ -210,10 +210,14 @@ void CmfcStep4Dlg::OnBnClickedButton1()
 
 	int x, y = 0;
 
-	for(int k = 0; k < 100; k++) {
+	for(int k = 0; k < COORD_DATA_SIZE; k++) {
 		x = rand() % nWidth;
 		y = rand() % nHeight;
 		fm[y * nPitch + x] = 0; // °ËÀº»ö
+
+		m_pDlgImageResult->m_ptCoordData[k].x = x;
+		m_pDlgImageResult->m_ptCoordData[k].y = y;
+		m_pDlgImageResult->m_nCoordDataSize++;
 	}
 
 	//memset(fm, 0, 640*480);
@@ -228,4 +232,5 @@ void CmfcStep4Dlg::OnBnClickedButton1()
 	cout << "nSum : " << nSum << endl;
 
 	m_pDlgImage->Invalidate();
+	m_pDlgImageResult->Invalidate();
 }
