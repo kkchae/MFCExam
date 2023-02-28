@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mfcStep1", "mfcStep1\mfcSte
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mfcStep2", "mfcStep2\mfcStep2.vcproj", "{2BF1A4B3-3C02-47D9-B96E-3385EF9B3580}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mfcStep3", "mfcStep3\mfcStep3.vcproj", "{056B40B7-FE2E-4B69-9028-BA5D0C2F2519}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{2BF1A4B3-3C02-47D9-B96E-3385EF9B3580}.Debug|Win32.Build.0 = Debug|Win32
 		{2BF1A4B3-3C02-47D9-B96E-3385EF9B3580}.Release|Win32.ActiveCfg = Release|Win32
 		{2BF1A4B3-3C02-47D9-B96E-3385EF9B3580}.Release|Win32.Build.0 = Release|Win32
+		{056B40B7-FE2E-4B69-9028-BA5D0C2F2519}.Debug|Win32.ActiveCfg = Debug|Win32
+		{056B40B7-FE2E-4B69-9028-BA5D0C2F2519}.Debug|Win32.Build.0 = Debug|Win32
+		{056B40B7-FE2E-4B69-9028-BA5D0C2F2519}.Release|Win32.ActiveCfg = Release|Win32
+		{056B40B7-FE2E-4B69-9028-BA5D0C2F2519}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
