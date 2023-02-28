@@ -6,8 +6,12 @@
 #include "mfcStep4.h"
 #include "mfcStep4Dlg.h"
 
+#include <iostream>
+using namespace std;
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
+#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 #endif
 
 
@@ -65,6 +69,7 @@ BEGIN_MESSAGE_MAP(CmfcStep4Dlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, &CmfcStep4Dlg::OnBnClickedOk)
 	ON_WM_DESTROY()
+	ON_BN_CLICKED(IDC_BUTTON1, &CmfcStep4Dlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -100,9 +105,16 @@ BOOL CmfcStep4Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	MoveWindow(0, 0, 1280, 800);
+
 	m_pDlgImage = new CDlgImage(this);
 	m_pDlgImage->Create(IDD_DLG_IMAGE, NULL);
 	m_pDlgImage->ShowWindow(SW_SHOW);
+
+	m_pDlgImageResult = new CDlgImage(this);
+	m_pDlgImageResult->Create(IDD_DLG_IMAGE, NULL);
+	m_pDlgImageResult->MoveWindow(640, 0, 640, 480);
+	m_pDlgImageResult->ShowWindow(SW_SHOW);
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -166,6 +178,8 @@ void CmfcStep4Dlg::OnBnClickedOk()
 
 	m_pDlgImage->ShowWindow(SW_SHOW);
 
+	m_pDlgImageResult->ShowWindow(SW_SHOW);
+
 	//OnOK();
 }
 
@@ -176,9 +190,42 @@ void CmfcStep4Dlg::OnDestroy()
 	if (m_pDlgImage) {
 		delete m_pDlgImage;
 	}
+
+	if (m_pDlgImageResult) {
+		delete m_pDlgImageResult;
+	}
 }
 
 void CmfcStep4Dlg::SendMsg(CString strMsg)
 {
 	AfxMessageBox(strMsg);
+}
+
+void CmfcStep4Dlg::OnBnClickedButton1()
+{
+	unsigned char* fm = (unsigned char*)m_pDlgImage->m_Image.GetBits();
+	int nWidth = m_pDlgImage->m_Image.GetWidth();
+	int nHeight = m_pDlgImage->m_Image.GetHeight();
+	int nPitch = m_pDlgImage->m_Image.GetPitch();
+
+	int x, y = 0;
+
+	for(int k = 0; k < 100; k++) {
+		x = rand() % nWidth;
+		y = rand() % nHeight;
+		fm[y * nPitch + x] = 0; // 검은색
+	}
+
+	//memset(fm, 0, 640*480);
+
+	int nSum = 0;
+	for(int j = 0; j < nHeight; j++ ) {
+		for (int i = 0; i < nWidth; i++ ) {
+			if (fm[j * nPitch + i] == 0)
+				nSum++;
+		}
+	}
+	cout << "nSum : " << nSum << endl;
+
+	m_pDlgImage->Invalidate();
 }

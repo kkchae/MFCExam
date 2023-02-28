@@ -37,4 +37,7 @@ public:
 
 private:
 	CDlgImage* m_pDlgImage;
+	CDlgImage* m_pDlgImageResult;
+public:
+	afx_msg void OnBnClickedButton1();
 };

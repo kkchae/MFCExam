@@ -7,7 +7,7 @@
 #include "mfcStep2Dlg.h"
 
 #include <iostream>
-#include <cmath>
+//#include <cmath>
 using namespace std;
 
 #ifdef _DEBUG
@@ -196,10 +196,10 @@ HCURSOR CmfcStep2Dlg::OnQueryDragIcon()
 //	fm[((nHeight-1) * nPitch) + (nWidth-1)] = 255/2; // right-bottom
 //
 //	int nColor = 200;
-//	for(int j = 0; j < nHeight/2; j++ ) {
-//		for (int i = 0; i < nWidth/2; i++ ) {
-//			fm[j*nPitch + i] = nColor;
-//		}
+	//for(int j = 0; j < nHeight/2; j++ ) {
+	//	for (int i = 0; i < nWidth/2; i++ ) {
+	//		fm[j*nPitch + i] = nColor;
+	//	}
 //	}
 //
 //
@@ -300,16 +300,16 @@ void CmfcStep2Dlg::UpdateDisplay( void )
 //		int nColor = 255; // 0~255
 //		memset(fm, nColor, sizeof(unsigned char)*nWidth*nHeight);
 //
-//		for(int j=nStartPosX; j<nStartPosX+48; j++) {
-//			for(int i=nStartPosY; i<nStartPosY+64; i++) {
-//				if (ValidImgPos(i, j)) {
-//					fm[j*nPitch + i] = nGray;
-//				} 
-//				else
-//				{
-//				}
-//			}
-//		}
+		//for(int j=nStartPosX; j<nStartPosX+48; j++) {
+		//	for(int i=nStartPosY; i<nStartPosY+64; i++) {
+		//		if (ValidImgPos(i, j)) {
+		//			fm[j*nPitch + i] = nGray;
+		//		} 
+		//		else
+		//		{
+		//		}
+		//	}
+		//}
 //		
 //		nStartPosX++;
 //		nStartPosY++;

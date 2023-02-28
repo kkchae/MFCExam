@@ -19,10 +19,17 @@ protected:
 public:
 	afx_msg void OnBnClickedBtnSendToParent();
 
+	CImage m_Image;
+
 private:
 	CWnd* m_pParentWnd;
+	
+
 public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	virtual BOOL OnInitDialog();
+	afx_msg void OnPaint();
+	void InitImage(void);
 };
 
 

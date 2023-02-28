@@ -34,6 +34,7 @@ void CDlgImage::DoDataExchange( CDataExchange* pDX )
 BEGIN_MESSAGE_MAP(CDlgImage, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_SEND_TO_PARENT, &CDlgImage::OnBnClickedBtnSendToParent)
 	ON_WM_CREATE()
+	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 
@@ -59,4 +60,49 @@ int CDlgImage::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//m_pParentWnd = CWnd::FromHandle(lpCreateStruct->hwndParent);
 
 	return 0;
+}
+
+BOOL CDlgImage::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	MoveWindow(0, 0, 640, 480);
+	InitImage();
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CDlgImage::OnPaint()
+{
+	CPaintDC dc(this); // device context for painting
+	// TODO: Add your message handler code here
+	// Do not call CDialogEx::OnPaint() for painting messages
+
+	if (m_Image) {
+		m_Image.Draw(dc, 0, 0);
+	}
+}
+
+void CDlgImage::InitImage( void )
+{
+	int nWidth = 640;
+	int nHeight = 480;
+	int nBpp = 8;
+
+	m_Image.Create(nWidth, -nHeight, nBpp);
+	if (nBpp == 8) {
+		static RGBQUAD rgb[256];
+		for (int i = 0; i < 256; i++ ) {
+			rgb[i].rgbRed = rgb[i].rgbGreen = rgb[i].rgbBlue = i;
+		}
+		m_Image.SetColorTable(0, 256, rgb);
+	}
+
+	unsigned char* fm = (unsigned char*)m_Image.GetBits();
+	int nPitch = m_Image.GetPitch();
+	//cout << _T("nPitch =") <<  nPitch << endl;
+
+	int nColor = 255; // 0~255
+	memset(fm, nColor, sizeof(unsigned char)*nWidth*nHeight);
 }
